@@ -1,0 +1,187 @@
+/* 공통 스타일 (폰트/리셋/공통 컴포넌트) */
+@import url("../common.css");
+
+/* ===== 브랜드 테마 변수 ===== */
+:root {
+    --white: #fafafa;
+    --black : #1a1a1a;
+    --ink1: #5B8FC4;
+    --font1: #303030;
+    --font2: #6695C9;
+    --line :#2D7A4F;
+    --tint: #EAF1F8;
+    --hover: #F1F1F1;
+    --padding: 20px
+}
+
+html {
+    background-color: #e0dcd3;
+}
+
+img{
+    width: 40%;
+    margin: 0 auto;
+}
+
+/* ===== HERO ===== */
+#hero_intro{
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - 80px);
+    padding: var(--padding);
+    display: flex;
+    align-items: end;
+}
+
+#hero_intro .hero_bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#hero_intro .hero_bg.is-active{
+    opacity: 1;
+}
+
+#hero_intro::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+    z-index: 0;
+    pointer-events: none;
+}
+
+#hero_intro .element_wrap{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    color: var(--white);
+}
+
+/* ===== SIGNATURE 카드 (라이트 에디토리얼형) ===== */
+.sig_card{
+    position: relative;
+    flex: 0 0 min(68vw, 300px);
+    max-width: 460px;
+    scroll-snap-align: center;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: var(--white);
+    box-shadow: 0 10px 30px rgba(91, 143, 196, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.sig_card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 18px 42px rgba(91, 143, 196, 0.22);
+}
+
+/* 이미지를 좀 더 단정한 비율로, 카드 상단에 배치 */
+.sig_card .sig_thumb{
+    aspect-ratio: 4 / 5;
+    border-radius: 20px 20px 0 0;
+}
+
+/* 오버레이 → 카드 하단의 정적인 콘텐츠 영역으로 전환 */
+.sig_overlay{
+    position: static;
+    width: 100%;
+    padding: 24px var(--padding) 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+    text-align: left;
+    background: var(--white);
+}
+
+.sig_badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--font2);
+}
+
+.sig_badge::before{
+    content: "";
+    width: 22px;
+    height: 1px;
+    background-color: var(--font2);
+}
+
+.sig_title{
+    position: relative;
+    padding-top: 15px;
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.4;
+    color: var(--font2);
+    text-shadow: none;
+}
+
+/* 타이틀 위 짧은 브랜드 액센트 라인 */
+.sig_title::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--ink1), var(--font2));
+}
+
+.sig_desc{
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #6b6b6b;
+    text-shadow: none;
+}
+
+/* ===== 브랜드 개별 오버라이드 ===== */
+
+/* 시그니처 섹션: 밝은 카드와 어울리도록 타이틀을 브랜드 블루로 */
+.info_note{
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #888;
+}
+
+.footer_name{
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--hover);
+    margin-bottom: 12px;
+}
+
+.footer_line{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--hover);
+}
+
+.footer_sep{
+    margin: 0 8px;
+    color: var(--hover);
+}
