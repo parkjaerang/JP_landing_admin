@@ -27,7 +27,8 @@
   var SECTIONS = {
     signature: "#signature",
     event: "#procedure_type",
-    info: "#information"
+    info: "#information",
+    ba: "#BA"
   };
   var SHORTS_GRID = "#contents .shorts_grid";
 
@@ -97,6 +98,7 @@
   applyHtml(SECTIONS.signature, OVERRIDE.signature);
   applyHtml(SECTIONS.event, OVERRIDE.event);
   applyHtml(SECTIONS.info, OVERRIDE.info);
+  applyHtml(SECTIONS.ba, OVERRIDE.ba);
   if (OVERRIDE.shorts) renderShorts(OVERRIDE.shorts);
 
   /* =========================================================
@@ -142,7 +144,7 @@
       /* 편집 모드: 콘텐츠의 hover/전환/애니메이션 비활성화(편집 UI[data-lp-ec]는 제외) */
       "html.lp-admin *:not([data-lp-ec]):not([data-lp-ec] *){animation:none!important;transition:none!important}" +
       /* hover 시 카드 들썩임 제거는 편집 대상 섹션 안으로만 한정(FAQ 등 아이콘 transform 보존) */
-      "html.lp-admin #signature *:hover:not([data-lp-ec]),html.lp-admin #procedure_type *:hover:not([data-lp-ec]),html.lp-admin #information *:hover:not([data-lp-ec]){transform:none!important}" +
+      "html.lp-admin #signature *:hover:not([data-lp-ec]),html.lp-admin #procedure_type *:hover:not([data-lp-ec]),html.lp-admin #information *:hover:not([data-lp-ec]),html.lp-admin #BA *:hover:not([data-lp-ec]){transform:none!important}" +
       "html.lp-admin #hero_intro .hero_bg{transition:none!important}" +
       "html.lp-admin [contenteditable='true']{outline:1px dashed rgba(47,109,240,.55);outline-offset:2px;cursor:text;border-radius:3px}" +
       "html.lp-admin [contenteditable='true']:hover{background:rgba(47,109,240,.05)}" +
@@ -153,7 +155,7 @@
       ".lp-del{position:absolute;top:6px;right:6px;z-index:60;width:26px;height:26px;border-radius:50%;border:0;background:#e8553b;color:#fff;font-size:15px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 5px rgba(0,0,0,.35)}" +
       /* 가로형 리스트 항목(kleam .event_item=<li>: 이름 왼쪽·가격 오른쪽)은 ×버튼이 가격을 가림 → 우측 여백 확보 */
       "html.lp-admin li.event_item.lp-item{padding-right:40px}" +
-      ".lp-add{display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 8px);margin:12px auto;padding:10px 16px;border:1.5px dashed #2f6df0;border-radius:10px;background:rgba(47,109,240,.08);color:#2f6df0;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;font-size:13px}" +
+      ".lp-add{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 8px);margin:12px auto;padding:10px 16px;border:1.5px dashed #2f6df0;border-radius:10px;background:rgba(47,109,240,.08);color:#2f6df0;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;font-size:13px}" +
       "html.lp-admin #signature .sig_track .lp-add{width:180px;min-width:180px;margin:0 8px;align-self:center;flex:0 0 auto}" +
       "html.lp-admin .lp-img{position:relative;cursor:pointer}" +
       "html.lp-admin .lp-img::after{content:'📷 이미지 변경';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.65);color:#fff;font-size:11px;padding:5px 9px;border-radius:6px;pointer-events:none;opacity:0;transition:.15s;white-space:nowrap}" +
@@ -211,16 +213,18 @@
             ".event_note", ".event_badge", ".event_meta", ".event_price",
             ".menu_cat_title", ".menu_sub", ".prog_title", ".proc-cat-title", ".proc-opt",
             ".tab", ".subtab", ".plan-switch-btn", ".section_title"],
-    info: [".info_label", ".info_text", ".info_hours dt", ".info_hours dd", ".section_title"]
+    info: [".info_label", ".info_text", ".info_hours dt", ".info_hours dd", ".section_title"],
+    ba: ["figcaption", ".ba_label", ".section_title"]
   };
   var ITEM_DEFS = [
     { wrap: "#signature .sig_track", item: ".sig_card" },
-    { wrap: "#procedure_type", item: ".event_item" }
+    { wrap: "#procedure_type", item: ".event_item" },
+    { wrap: "#BA .ba_grid", item: ".ba_card" }
   ];
 
   function refreshEditables() {
     Object.keys(TEXT_SELECTORS).forEach(function (sec) {
-      var root = q(sec === "signature" ? "#signature" : sec === "event" ? "#procedure_type" : "#information");
+      var root = q(SECTIONS[sec]);
       if (!root) return;
       var sels = TEXT_SELECTORS[sec];
       var candidates = [];
@@ -240,7 +244,7 @@
   }
 
   function bindImages() {
-    qa("#signature img, #procedure_type img").forEach(function (img) {
+    qa("#signature img, #procedure_type img, #BA img").forEach(function (img) {
       var holder = img.parentElement || img;
       if (holder.getAttribute("data-lp-img") === "1") return;
       holder.setAttribute("data-lp-img", "1");
@@ -409,13 +413,13 @@
       firstCat.id = newCat;
       firstCat.classList.add("is-active");
       var title = q(".proc-cat-title", firstCat);
-      if (title) title.textContent = "新しいカテゴリ";
+      if (title) title.textContent = "새 카테고리";
       trimCards(firstCat);
       var s0 = subsWrap ? directChildren(subsWrap, ".subtab")[0] : null;
       if (s0) {
         s0.setAttribute("data-target", newCat);
         s0.classList.add("is-active");
-        setTabLabel(s0, "新しいカテゴリ");
+        setTabLabel(s0, "새 카테고리");
       }
     } else {
       trimCards(panel);
@@ -433,7 +437,7 @@
     cleanClone(t);
     t.classList.remove("is-active");
     t.setAttribute("data-target", "#" + newPanelId);
-    setTabLabel(t, "新しいタブ");
+    setTabLabel(t, "새 탭");
 
     if (srcPanel) {
       var p = srcPanel.cloneNode(true);
@@ -452,12 +456,28 @@
   function deleteTab(tab) {
     var group = tab.closest(".tabs");
     if (!group) return;
-    if (directChildren(group, ".tab").length <= 1) { toast("마지막 탭은 삭제할 수 없습니다"); return; }
-    if (!confirm("이 탭과 그 내용을 모두 삭제할까요?")) return;
+    var isLast = directChildren(group, ".tab").length <= 1;
+    if (!confirm(isLast ? "이 탭을 삭제하면 상위탭이 없어집니다(내용은 평면으로 복원). 삭제할까요?"
+                        : "이 탭과 그 내용을 모두 삭제할까요?")) return;
     var sel = tab.getAttribute("data-target");
     var panel = sel ? q(sel) : null;
     var wasActive = tab.classList.contains("is-active");
     tab.remove();
+
+    if (isLast) {
+      // 마지막 탭: 평면 카드 묶음이 있으면 섹션으로 되돌리고(평면 복원), 패널·빈 .tabs 제거
+      var root = group.closest("#procedure_type") || q("#procedure_type");
+      if (panel) {
+        var grid = flatGrid(panel, true);
+        if (grid && root) root.insertBefore(grid, group);
+        panel.remove();
+      }
+      group.remove();
+      refreshEditables();
+      toast("탭을 삭제했습니다");
+      return;
+    }
+
     if (panel) panel.remove();
     if (wasActive) {
       var first = directChildren(group, ".tab")[0];
@@ -479,7 +499,7 @@
     cleanClone(s);
     s.classList.remove("is-active");
     s.setAttribute("data-target", newCat);
-    setTabLabel(s, "新しいカテゴリ");
+    setTabLabel(s, "새 카테고리");
 
     if (srcCat) {
       var c = srcCat.cloneNode(true);
@@ -487,7 +507,7 @@
       c.classList.remove("is-active");
       c.id = newCat;
       var title = q(".proc-cat-title", c);
-      if (title) title.textContent = "新しいカテゴリ";
+      if (title) title.textContent = "새 카테고리";
       trimCards(c);
       srcCat.parentElement.appendChild(c);
     }
@@ -500,12 +520,28 @@
   function deleteSubtab(sub) {
     var wrap = sub.closest(".subtabs");
     if (!wrap) return;
-    if (directChildren(wrap, ".subtab").length <= 1) { toast("마지막 카테고리는 삭제할 수 없습니다"); return; }
-    if (!confirm("이 카테고리와 그 내용을 삭제할까요?")) return;
+    var isLast = directChildren(wrap, ".subtab").length <= 1;
+    if (!confirm(isLast ? "이 카테고리를 삭제하면 하위탭이 없어집니다(내용은 평면으로 복원). 삭제할까요?"
+                        : "이 카테고리와 그 내용을 삭제할까요?")) return;
     var catId = sub.getAttribute("data-target");
     var cat = catId ? document.getElementById(catId) : null;
     var wasActive = sub.classList.contains("is-active");
+    var panel = sub.closest(".panel") || q("#procedure_type");
     sub.remove();
+
+    if (isLast) {
+      // 마지막 카테고리: 평면 카드 묶음이 있으면 패널로 되돌리고(평면 복원), 카테고리·빈 .subtabs 제거
+      if (cat) {
+        var grid = flatGrid(cat, true);
+        if (grid && panel) panel.insertBefore(grid, wrap);
+        cat.remove();
+      }
+      wrap.remove();
+      refreshEditables();
+      toast("카테고리를 삭제했습니다");
+      return;
+    }
+
     if (cat) cat.remove();
     if (wasActive) {
       var first = directChildren(wrap, ".subtab")[0];
@@ -540,7 +576,7 @@
     tab.type = "button";
     tab.className = "tab is-active";
     tab.setAttribute("data-target", "#" + panelId);
-    tab.textContent = "新しいタブ";
+    tab.textContent = "새 탭";
     tabs.appendChild(tab);
 
     var panel = document.createElement("div");
@@ -576,7 +612,7 @@
     sub.type = "button";
     sub.className = "subtab is-active";
     sub.setAttribute("data-target", catId);
-    sub.textContent = "新しいカテゴリ";
+    sub.textContent = "새 카테고리";
     subtabs.appendChild(sub);
 
     var cat = document.createElement("div");
@@ -584,7 +620,7 @@
     cat.id = catId;
     var ctitle = document.createElement("h3");
     ctitle.className = "proc-cat-title";
-    ctitle.textContent = "新しいカテゴリ";
+    ctitle.textContent = "새 카테고리";
     cat.appendChild(ctitle);
     // .event_grid / .grid 는 자체 좌우 패딩이 있어 proc-cat 패딩과 겹침 → proc-cat 패딩 제거
     if (!grid.classList.contains("proc-cards")) {
@@ -633,16 +669,19 @@
     var root = q("#procedure_type");
     if (!root) return;
 
-    // 탭이 하나도 없고 평면 카드 묶음이 있으면 → '상위탭 만들기' 부트스트랩 버튼
+    // 탭이 하나도 없고 평면 카드 묶음이 있으면 → '상위탭 만들기' 버튼(요금제 제목 바로 아래)
     if (!q(".tabs", root) && flatGrid(root, true) && !q(".lp-tabboot", root)) {
-      root.appendChild(bootBtn("lp-tabboot", "＋ 上位タブを作成", function () {
+      var tb = bootBtn("lp-tabboot", "＋ 상위탭 만들기", function () {
         createTabStructure(root);
-      }));
+      });
+      var rootTitle = directChildren(root, ".section_title")[0];
+      if (rootTitle) root.insertBefore(tb, rootTitle.nextSibling);
+      else root.insertBefore(tb, root.firstChild);
     }
-    // 서브탭 없는 각 패널 → '하위탭 만들기' 부트스트랩 버튼(패널 맨 위)
+    // 서브탭 없는 각 패널 → '하위탭 만들기' 버튼(패널 맨 위)
     qa(".panel", root).forEach(function (panel) {
       if (q(".subtabs", panel) || !flatGrid(panel, true) || q(".lp-subboot", panel)) return;
-      var btn = bootBtn("lp-subboot", "＋ 下位タブ(カテゴリ)を作成", function () {
+      var btn = bootBtn("lp-subboot", "＋ 하위탭(카테고리) 만들기", function () {
         createSubtabStructure(panel);
       });
       panel.insertBefore(btn, panel.firstChild);
@@ -766,7 +805,7 @@
 
     var add = document.createElement("button");
     add.className = "lp-add lp-sadd"; add.type = "button";
-    add.textContent = "＋ YouTube 追加";
+    add.textContent = "＋ 유튜브 추가";
     add.setAttribute("data-lp-ec", "1");
     add.addEventListener("click", function (e) {
       e.preventDefault(); e.stopPropagation();
@@ -790,7 +829,7 @@
     row.className = "lp-srow"; row.setAttribute("data-lp-ec", "1");
     row.innerHTML =
       "<span class='lp-sn'></span>" +
-      "<input type='text' class='lp-sid' placeholder='YouTube 링크 주소 (예: https://youtu.be/xxxxxxxxxxx)' value='" + shortsUrl(it.id) + "'>" +
+      "<input type='text' class='lp-sid' placeholder='유튜브 링크 주소 (예: https://youtu.be/xxxxxxxxxxx)' value='" + shortsUrl(it.id) + "'>" +
       "<select class='lp-sratio'>" +
       "<option value='9x16'" + (it.ratio !== "16x9" ? " selected" : "") + ">세로 9:16</option>" +
       "<option value='16x9'" + (it.ratio === "16x9" ? " selected" : "") + ">가로 16:9</option>" +
@@ -865,6 +904,7 @@
     if (q(SECTIONS.signature)) ov.signature = snapshot(SECTIONS.signature, "signature");
     if (q(SECTIONS.event)) ov.event = snapshot(SECTIONS.event, "event");
     if (q(SECTIONS.info)) ov.info = snapshot(SECTIONS.info, "info");
+    if (q(SECTIONS.ba)) ov.ba = snapshot(SECTIONS.ba, "ba");
     if (q(SHORTS_GRID)) ov.shorts = collectShorts();
     var ok = saveOverride(ov);
     OVERRIDE = ov;
