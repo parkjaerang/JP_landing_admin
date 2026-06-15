@@ -1,17 +1,17 @@
 /* =============================================================
-   admin.js  —  管理ページ（admin.html）用
-   - 簡易クライアント認証（パスワード）
-   - 認証後にギャラリーを表示し、各カードに「編集」ボタンを追加
-   - 編集ボタン → 各 LP を ?admin=1 で開き、admin-edit.js が編集モードに
-   ※ クライアント側パスワードのため強固な機密保護ではありません。
-     本番ではバックエンド認証への置き換えを推奨します。
+   admin.js  —  관리자 페이지(admin.html) 전용
+   - 간단한 클라이언트 인증(비밀번호)
+   - 인증 후 갤러리를 표시하고, 각 카드에 '편집' 버튼 추가
+   - 편집 버튼 → 각 LP를 ?admin=1 로 열어 admin-edit.js가 편집 모드 진입
+   ※ 클라이언트 측 비밀번호라 강력한 보안은 아닙니다.
+     실제 운영에서는 백엔드 인증으로 교체를 권장합니다.
    ============================================================= */
 (function () {
   "use strict";
 
-  /* ▼ ここでパスワードを変更してください ▼ */
+  /* ▼ 여기에서 비밀번호를 변경하세요 ▼ */
   var ADMIN_PASSWORD = "admin1234";
-  /* ▲ ここまで ▲ */
+  /* ▲ 여기까지 ▲ */
 
   var AUTH_KEY = "lp_admin_authed";
 
@@ -23,17 +23,17 @@
     if (authed()) { enterAdmin(); } else { showGate(); }
   });
 
-  /* ---- ログイン画面 ---- */
+  /* ---- 로그인 화면 ---- */
   function showGate() {
     document.body.classList.add("admin-locked");
     var gate = document.createElement("div");
     gate.className = "admin-gate";
     gate.innerHTML =
       "<div class='admin-gate-box'>" +
-      "<h2>管理者ログイン</h2>" +
-      "<p>パスワードを入力してください</p>" +
-      "<input type='password' id='admin-pw' placeholder='パスワード' autocomplete='current-password'>" +
-      "<button id='admin-login'>ログイン</button>" +
+      "<h2>관리자 로그인</h2>" +
+      "<p>비밀번호를 입력하세요</p>" +
+      "<input type='password' id='admin-pw' placeholder='비밀번호' autocomplete='current-password'>" +
+      "<button id='admin-login'>로그인</button>" +
       "<p class='admin-err' id='admin-err'></p>" +
       "</div>";
     document.body.appendChild(gate);
@@ -47,7 +47,7 @@
         document.body.classList.remove("admin-locked");
         enterAdmin();
       } else {
-        err.textContent = "パスワードが違います";
+        err.textContent = "비밀번호가 올바르지 않습니다";
         pw.value = ""; pw.focus();
       }
     }
@@ -56,22 +56,22 @@
     pw.focus();
   }
 
-  /* typo 安全のための別名 */
+  /* 오타 방지용 별칭 */
   function enterAdmin() { enterAdminImpl(); }
   function enterAdminImpl() {
     addAdminBar();
     addEditButtons();
   }
 
-  /* ---- 上部バー（ログアウト） ---- */
+  /* ---- 상단 바(로그아웃) ---- */
   function addAdminBar() {
     if (document.querySelector(".admin-bar")) return;
     var bar = document.createElement("div");
     bar.className = "admin-bar";
     bar.innerHTML =
-      "<span>🔑 管理モード</span><span class='admin-bar-sp'></span>" +
-      "<span class='admin-hint'>各ページの「編集」から内容を変更できます</span>" +
-      "<button id='admin-logout'>ログアウト</button>";
+      "<span>🔑 관리자 모드</span><span class='admin-bar-sp'></span>" +
+      "<span class='admin-hint'>각 페이지의 '편집'에서 내용을 변경할 수 있습니다</span>" +
+      "<button id='admin-logout'>로그아웃</button>";
     document.body.insertBefore(bar, document.body.firstChild);
     bar.querySelector("#admin-logout").addEventListener("click", function () {
       setAuthed(false);
@@ -79,7 +79,7 @@
     });
   }
 
-  /* ---- 各カードに編集ボタン ---- */
+  /* ---- 각 카드에 편집 버튼 ---- */
   function addEditButtons() {
     var cards = document.querySelectorAll(".gallery .card");
     cards.forEach(function (card) {
@@ -91,7 +91,7 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "admin-edit-btn";
-      btn.textContent = "✏️ 編集";
+      btn.textContent = "✏️ 편집";
       btn.addEventListener("click", function (e) {
         e.preventDefault(); e.stopPropagation();
         var url = href + (href.indexOf("?") === -1 ? "?" : "&") + "admin=1";
@@ -101,7 +101,7 @@
     });
   }
 
-  /* ---- スタイル ---- */
+  /* ---- 스타일 ---- */
   function injectStyle() {
     var s = document.createElement("style");
     s.textContent =
