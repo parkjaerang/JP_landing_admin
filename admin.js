@@ -179,7 +179,7 @@
       ".admin-gate-box input{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:15px;margin-bottom:12px}" +
       ".admin-gate-box input:focus{outline:2px solid #2f6df0;border-color:transparent}" +
       ".admin-gate-box button{width:100%;padding:12px;border:0;border-radius:10px;background:#2f6df0;color:#fff;font-size:15px;font-weight:700;cursor:pointer}" +
-      ".admin-gate-box button:hover{background:#255bd0}" +
+      // ".admin-gate-box button:hover{background:#255bd0}" +
       ".admin-err{color:#e8553b!important;font-size:12px!important;margin:10px 0 0!important;min-height:14px}" +
       ".admin-bar{position:sticky;top:0;z-index:9000;display:flex;align-items:center;gap:10px;padding:9px 18px;" +
       "background:#1a1c1f;color:#fff;font-family:system-ui,sans-serif;font-size:13px}" +
@@ -187,10 +187,10 @@
       ".admin-bar button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:7px 14px;background:#3a3d42;color:#fff;font-weight:600}" +
       ".admin-edit-btn{position:absolute;top:10px;right:10px;z-index:20;border:0;border-radius:999px;padding:8px 14px;" +
       "background:#2f6df0;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}" +
-      ".admin-edit-btn:hover{background:#255bd0}" +
+      // ".admin-edit-btn:hover{background:#255bd0}" +
       ".admin-thumb-btn{position:absolute;top:10px;left:10px;z-index:20;border:0;border-radius:999px;padding:8px 14px;" +
       "background:rgba(26,28,31,.82);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}" +
-      ".admin-thumb-btn:hover{background:#1a1c1f}" +
+      // ".admin-thumb-btn:hover{background:#1a1c1f}" +
       ".admin-toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999;background:#1a1c1f;color:#fff;" +
       "padding:9px 18px;border-radius:999px;font-size:13px;font-family:system-ui,sans-serif;opacity:0;transition:.25s;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.3)}" +
       ".admin-toast.show{opacity:1}";
