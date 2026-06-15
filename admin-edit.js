@@ -147,7 +147,8 @@
       "html.lp-admin #signature *:hover:not([data-lp-ec]),html.lp-admin #procedure_type *:hover:not([data-lp-ec]),html.lp-admin #information *:hover:not([data-lp-ec]),html.lp-admin #BA *:hover:not([data-lp-ec]){transform:none!important}" +
       "html.lp-admin #hero_intro .hero_bg{transition:none!important}" +
       "html.lp-admin [contenteditable='true']{outline:1px dashed rgba(47,109,240,.55);outline-offset:2px;cursor:text;border-radius:3px}" +
-      "html.lp-admin [contenteditable='true']:hover{background:rgba(47,109,240,.05)}" +
+      /* 자체 호버/상태색을 가진 클릭형 헤더(탭·아코디언 등)는 편집기 호버 틴트 제외 → 네이티브 호버색 유지 */
+      "html.lp-admin [contenteditable='true']:not(.tab):not(.subtab):not(.prog_title):not(.plan-switch-btn):hover{background:rgba(47,109,240,.05)}" +
       "html.lp-admin [contenteditable='true']:focus{outline:2px solid #2f6df0;background:rgba(47,109,240,.08)}" +
       /* 클릭 요소는 pointer 커서(편집용 텍스트 커서보다 우선) */
       "html.lp-admin a,html.lp-admin button,html.lp-admin [role='button'],html.lp-admin .tab,html.lp-admin .subtab,html.lp-admin .plan-switch-btn,html.lp-admin .faq_q,html.lp-admin .faq_arrow,html.lp-admin .line_btn,html.lp-admin label,html.lp-admin select,html.lp-admin summary,html.lp-admin .swiper-button-next,html.lp-admin .swiper-button-prev{cursor:pointer!important}" +
