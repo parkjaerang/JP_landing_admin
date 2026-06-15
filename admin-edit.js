@@ -27,6 +27,7 @@
   var SECTIONS = {
     signature: "#signature",
     event: "#procedure_type",
+    doctors: "#doctors",
     info: "#information",
     ba: "#BA"
   };
@@ -97,6 +98,7 @@
   var OVERRIDE = loadOverride();
   applyHtml(SECTIONS.signature, OVERRIDE.signature);
   applyHtml(SECTIONS.event, OVERRIDE.event);
+  applyHtml(SECTIONS.doctors, OVERRIDE.doctors);
   applyHtml(SECTIONS.info, OVERRIDE.info);
   applyHtml(SECTIONS.ba, OVERRIDE.ba);
   if (OVERRIDE.shorts) renderShorts(OVERRIDE.shorts);
@@ -144,11 +146,11 @@
       /* 편집 모드: 콘텐츠의 hover/전환/애니메이션 비활성화(편집 UI[data-lp-ec]는 제외) */
       "html.lp-admin *:not([data-lp-ec]):not([data-lp-ec] *){animation:none!important;transition:none!important}" +
       /* hover 시 카드 들썩임 제거는 편집 대상 섹션 안으로만 한정(FAQ 등 아이콘 transform 보존) */
-      "html.lp-admin #signature *:hover:not([data-lp-ec]),html.lp-admin #procedure_type *:hover:not([data-lp-ec]),html.lp-admin #information *:hover:not([data-lp-ec]),html.lp-admin #BA *:hover:not([data-lp-ec]){transform:none!important}" +
+      "html.lp-admin #signature *:hover:not([data-lp-ec]),html.lp-admin #procedure_type *:hover:not([data-lp-ec]),html.lp-admin #doctors *:hover:not([data-lp-ec]),html.lp-admin #information *:hover:not([data-lp-ec]),html.lp-admin #BA *:hover:not([data-lp-ec]){transform:none!important}" +
       "html.lp-admin #hero_intro .hero_bg{transition:none!important}" +
       "html.lp-admin [contenteditable='true']{outline:1px dashed rgba(47,109,240,.55);outline-offset:2px;cursor:text;border-radius:3px}" +
-      /* 자체 호버/상태색을 가진 클릭형 헤더(탭·아코디언 등)는 편집기 호버 틴트 제외 → 네이티브 호버색 유지 */
-      "html.lp-admin [contenteditable='true']:not(.tab):not(.subtab):not(.prog_title):not(.plan-switch-btn):hover{background:rgba(47,109,240,.05)}" +
+      /* 아코디언 헤더(.prog_title)는 자체 호버색(#c2d6d3)이 있어 편집기 호버 틴트 제외 → 네이티브 호버색 유지. 탭/서브탭 등은 기존대로 틴트 적용 */
+      "html.lp-admin [contenteditable='true']:not(.prog_title):hover{background:rgba(47,109,240,.05)}" +
       "html.lp-admin [contenteditable='true']:focus{outline:2px solid #2f6df0;background:rgba(47,109,240,.08)}" +
       /* 클릭 요소는 pointer 커서(편집용 텍스트 커서보다 우선) */
       "html.lp-admin a,html.lp-admin button,html.lp-admin [role='button'],html.lp-admin .tab,html.lp-admin .subtab,html.lp-admin .plan-switch-btn,html.lp-admin .faq_q,html.lp-admin .faq_arrow,html.lp-admin .line_btn,html.lp-admin label,html.lp-admin select,html.lp-admin summary,html.lp-admin .swiper-button-next,html.lp-admin .swiper-button-prev{cursor:pointer!important}" +
@@ -156,6 +158,8 @@
       ".lp-del{position:absolute;top:6px;right:6px;z-index:60;width:26px;height:26px;border-radius:50%;border:0;background:#e8553b;color:#fff;font-size:15px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 5px rgba(0,0,0,.35)}" +
       /* 가로형 리스트 항목(kleam .event_item=<li>: 이름 왼쪽·가격 오른쪽)은 ×버튼이 가격을 가림 → 우측 여백 확보 */
       "html.lp-admin li.event_item.lp-item{padding-right:40px}" +
+      /* 원장 경력 줄(.doctor_career li): ×버튼이 텍스트를 가리지 않게 우측 여백 확보 */
+      "html.lp-admin .doctor_career li.lp-item{padding-right:34px}" +
       ".lp-add{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 8px);margin:12px auto;padding:10px 16px;border:1.5px dashed #2f6df0;border-radius:10px;background:rgba(47,109,240,.08);color:#2f6df0;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;font-size:13px}" +
       "html.lp-admin #signature .sig_track .lp-add{width:180px;min-width:180px;margin:0 8px;align-self:center;flex:0 0 auto}" +
       "html.lp-admin .lp-img{position:relative;cursor:pointer}" +
@@ -214,12 +218,15 @@
             ".event_note", ".event_badge", ".event_meta", ".event_price",
             ".menu_cat_title", ".menu_sub", ".prog_title", ".proc-cat-title", ".proc-opt",
             ".tab", ".subtab", ".plan-switch-btn", ".section_title"],
+    doctors: [".doctor_role", ".doctor_name", ".doctor_career li", ".section_title"],
     info: [".info_label", ".info_text", ".info_hours dt", ".info_hours dd", ".section_title"],
     ba: ["figcaption", ".ba_label", ".section_title"]
   };
   var ITEM_DEFS = [
     { wrap: "#signature .sig_track", item: ".sig_card" },
     { wrap: "#procedure_type", item: ".event_item" },
+    { wrap: "#doctors .doctors_wrap", item: ".doctor_card" },
+    { wrap: "#doctors", item: ".doctor_career li" },
     { wrap: "#BA .ba_grid", item: ".ba_card" }
   ];
 
@@ -239,13 +246,25 @@
         el.setAttribute("spellcheck", "false");
       });
     });
+    lockPriceUnits();
     bindImages();
     bindItemControls();
     bindTabControls();
   }
 
+  /* 가격 단위(万ウォン 등 <small>)는 편집 잠금 → 가격 숫자만 편집되게.
+     contenteditable 부모 안의 contenteditable=false 자식은 편집 불가 섬이 됨.
+     저장 스냅샷에서는 [contenteditable] 속성이 모두 제거되므로 라이브엔 영향 없음. */
+  function lockPriceUnits() {
+    var ev = q("#procedure_type");
+    if (!ev) return;
+    qa("small", ev).forEach(function (el) {
+      el.setAttribute("contenteditable", "false");
+    });
+  }
+
   function bindImages() {
-    qa("#signature img, #procedure_type img, #BA img").forEach(function (img) {
+    qa("#signature img, #procedure_type img, #doctors img, #BA img").forEach(function (img) {
       var holder = img.parentElement || img;
       if (holder.getAttribute("data-lp-img") === "1") return;
       holder.setAttribute("data-lp-img", "1");
@@ -904,6 +923,7 @@
     var ov = loadOverride();
     if (q(SECTIONS.signature)) ov.signature = snapshot(SECTIONS.signature, "signature");
     if (q(SECTIONS.event)) ov.event = snapshot(SECTIONS.event, "event");
+    if (q(SECTIONS.doctors)) ov.doctors = snapshot(SECTIONS.doctors, "doctors");
     if (q(SECTIONS.info)) ov.info = snapshot(SECTIONS.info, "info");
     if (q(SECTIONS.ba)) ov.ba = snapshot(SECTIONS.ba, "ba");
     if (q(SHORTS_GRID)) ov.shorts = collectShorts();

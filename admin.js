@@ -61,6 +61,7 @@
   function enterAdminImpl() {
     addAdminBar();
     addEditButtons();
+    addThumbEditors();
   }
 
   /* ---- 상단 바(로그아웃) ---- */
@@ -91,7 +92,7 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "admin-edit-btn";
-      btn.textContent = "✏️ 편집";
+      btn.textContent = "✏️ 페이지 편집";
       btn.addEventListener("click", function (e) {
         e.preventDefault(); e.stopPropagation();
         var url = href + (href.indexOf("?") === -1 ? "?" : "&") + "admin=1";
@@ -99,6 +100,70 @@
       });
       thumb.appendChild(btn);
     });
+  }
+
+  /* ---- 각 카드 썸네일 변경(이미지 교체) ---- */
+  function addThumbEditors() {
+    if (!window.LPGallery) return;            // gallery-edit.js 미로드 시 무시
+    var cards = document.querySelectorAll(".gallery .card");
+    cards.forEach(function (card) {
+      var thumb = card.querySelector(".card-thumb");
+      if (!thumb || thumb.querySelector(".admin-thumb-btn")) return;
+      var img = thumb.querySelector("img");
+      if (!img) return;
+      thumb.style.position = "relative";
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "admin-thumb-btn";
+      btn.textContent = "🖼️ 썸네일 변경";
+      btn.addEventListener("click", function (e) {
+        e.preventDefault(); e.stopPropagation();
+        pickImage(function (dataUrl) {
+          img.setAttribute("src", dataUrl);
+          img.removeAttribute("srcset");
+          var data = window.LPGallery.load();
+          var key = window.LPGallery.cardKey(card);
+          if (!data[key]) data[key] = {};
+          data[key].thumb = dataUrl;
+          var ok = window.LPGallery.save(data);
+          toast(ok ? "✅ 썸네일을 변경했습니다 (이 브라우저에 저장됨)"
+                   : "⚠️ 저장 실패 (용량 초과 가능성)");
+        });
+      });
+      thumb.appendChild(btn);
+    });
+  }
+
+  /* ---- 파일 선택 → dataURL ---- */
+  function pickImage(cb) {
+    var inp = document.createElement("input");
+    inp.type = "file"; inp.accept = "image/*";
+    inp.style.display = "none";
+    document.body.appendChild(inp);
+    inp.addEventListener("change", function () {
+      var f = inp.files && inp.files[0];
+      if (f) {
+        var r = new FileReader();
+        r.onload = function () { cb(r.result); };
+        r.readAsDataURL(f);
+      }
+      inp.remove();
+    });
+    inp.click();
+  }
+
+  /* ---- 토스트 ---- */
+  var _toastEl, _toastT;
+  function toast(msg) {
+    if (!_toastEl) {
+      _toastEl = document.createElement("div");
+      _toastEl.className = "admin-toast";
+      document.body.appendChild(_toastEl);
+    }
+    _toastEl.textContent = msg;
+    _toastEl.classList.add("show");
+    clearTimeout(_toastT);
+    _toastT = setTimeout(function () { _toastEl.classList.remove("show"); }, 2400);
   }
 
   /* ---- 스타일 ---- */
@@ -122,7 +187,13 @@
       ".admin-bar button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:7px 14px;background:#3a3d42;color:#fff;font-weight:600}" +
       ".admin-edit-btn{position:absolute;top:10px;right:10px;z-index:20;border:0;border-radius:999px;padding:8px 14px;" +
       "background:#2f6df0;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}" +
-      ".admin-edit-btn:hover{background:#255bd0}";
+      ".admin-edit-btn:hover{background:#255bd0}" +
+      ".admin-thumb-btn{position:absolute;top:10px;left:10px;z-index:20;border:0;border-radius:999px;padding:8px 14px;" +
+      "background:rgba(26,28,31,.82);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}" +
+      ".admin-thumb-btn:hover{background:#1a1c1f}" +
+      ".admin-toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999;background:#1a1c1f;color:#fff;" +
+      "padding:9px 18px;border-radius:999px;font-size:13px;font-family:system-ui,sans-serif;opacity:0;transition:.25s;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.3)}" +
+      ".admin-toast.show{opacity:1}";
     document.head.appendChild(s);
   }
 })();
