@@ -76,86 +76,78 @@ if (eventGrid && eventMore) {
     renderCards();
 }
 
-/* ===== SIGNATURE 자동 슬라이드 ===== */
-const sigTrack = document.querySelector('.sig_track');
+/* ===== 가로 카드 트랙: 자동 슬라이드 + 드래그 ===== */
+function initCardSlider(track, cardSelector, { interval = 2500, gap = 16 } = {}) {
+    if (!track) return;
 
-if (sigTrack) {
-    const INTERVAL = 2500;
     let timer = null;
     let paused = false;
     let isDragging = false;
     let index = 0; // 현재 카드 인덱스
 
-    // 양쪽 여백은 CSS의 .sig_track::before / ::after 로 가운데 정렬을 보장
-
     function nextSlide() {
-        const cards = sigTrack.querySelectorAll('.sig_card');
+        const cards = track.querySelectorAll(cardSelector);
         if (!cards.length) return;
-        const step = cards[0].offsetWidth + 16; // 카드 폭 + gap
+        const step = cards[0].offsetWidth + gap; // 카드 폭 + gap
         // 마지막 카드 다음에는 처음으로 되돌아간다
         index = index >= cards.length - 1 ? 0 : index + 1;
-        sigTrack.scrollTo({ left: step * index, behavior: 'smooth' });
+        track.scrollTo({ left: step * index, behavior: 'smooth' });
     }
 
     function start() {
         if (timer) return;
         timer = setInterval(() => {
             if (!paused && !isDragging) nextSlide();
-        }, INTERVAL);
-    }
-
-    function stop() {
-        clearInterval(timer);
-        timer = null;
+        }, interval);
     }
 
     // 호버 / 터치 시 일시정지
-    sigTrack.addEventListener('mouseenter', () => { paused = true; });
-    sigTrack.addEventListener('mouseleave', () => { paused = false; });
-    sigTrack.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-    sigTrack.addEventListener('touchend', () => { paused = false; });
+    track.addEventListener('mouseenter', () => { paused = true; });
+    track.addEventListener('mouseleave', () => { paused = false; });
+    track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    track.addEventListener('touchend', () => { paused = false; });
 
     // 드래그로 좌우 스크롤
     let startX = 0;
     let startScroll = 0;
     let moved = false;
 
-    sigTrack.addEventListener('pointerdown', (e) => {
+    track.addEventListener('pointerdown', (e) => {
         isDragging = true;
         moved = false;
         startX = e.clientX;
-        startScroll = sigTrack.scrollLeft;
-        sigTrack.style.scrollSnapType = 'none';
-        sigTrack.classList.add('dragging');
-        sigTrack.setPointerCapture(e.pointerId);
+        startScroll = track.scrollLeft;
+        track.style.scrollSnapType = 'none';
+        track.classList.add('dragging');
+        track.setPointerCapture(e.pointerId);
     });
 
-    sigTrack.addEventListener('pointermove', (e) => {
+    track.addEventListener('pointermove', (e) => {
         if (!isDragging) return;
         const dx = e.clientX - startX;
         if (Math.abs(dx) > 4) moved = true;
-        sigTrack.scrollLeft = startScroll - dx;
+        track.scrollLeft = startScroll - dx;
     });
 
     function endDrag(e) {
         if (!isDragging) return;
         isDragging = false;
-        sigTrack.classList.remove('dragging');
-        sigTrack.style.scrollSnapType = '';
-        try { sigTrack.releasePointerCapture(e.pointerId); } catch (_) {}
+        track.classList.remove('dragging');
+        track.style.scrollSnapType = '';
+        try { track.releasePointerCapture(e.pointerId); } catch (_) {}
         // 드래그로 옮긴 위치에 맞춰 인덱스 동기화
-        const card = sigTrack.querySelector('.sig_card');
+        const card = track.querySelector(cardSelector);
         if (card) {
-            const step = card.offsetWidth + 16;
-            index = Math.round(sigTrack.scrollLeft / step);
+            const step = card.offsetWidth + gap;
+            index = Math.round(track.scrollLeft / step);
         }
     }
 
-    sigTrack.addEventListener('pointerup', endDrag);
-    sigTrack.addEventListener('pointercancel', endDrag);
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
 
     // 드래그 후 클릭 오작동 방지
-    sigTrack.addEventListener('click', (e) => {
+    track.addEventListener('click', (e) => {
         if (moved) {
             e.preventDefault();
             e.stopPropagation();
@@ -164,6 +156,9 @@ if (sigTrack) {
 
     start();
 }
+
+initCardSlider(document.querySelector('.sig_track'), '.sig_card', { interval: 2500 });
+initCardSlider(document.querySelector('.doctors_wrap'), '.doctor_card', { interval: 3000 });
 
 document.querySelectorAll('.faq_item').forEach((item) => {
     const btn = item.querySelector('.faq_q');
