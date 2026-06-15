@@ -170,6 +170,7 @@
       ".lp-srow .lp-sn{font-weight:700;color:#6b7077;font-family:system-ui;font-size:12px}" +
       ".lp-srow input{flex:1;min-width:180px;font:inherit;padding:8px;border:1px solid #ccc;border-radius:8px}" +
       ".lp-srow select{font:inherit;padding:8px;border:1px solid #ccc;border-radius:8px}" +
+      ".lp-srow .lp-sdel{flex:0 0 auto;width:30px;height:30px;border-radius:8px;border:0;background:#e8553b;color:#fff;font-size:16px;line-height:1;cursor:pointer}" +
       ".lp-badge{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999;background:#1a1c1f;color:#fff;padding:9px 18px;border-radius:999px;font-size:13px;font-family:system-ui;opacity:0;transition:.25s;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.3)}" +
       ".lp-badge.show{opacity:1}";
     document.head.appendChild(s);
@@ -549,7 +550,6 @@
 
     // section_title 바로 뒤에 tabs, 그 뒤에 panel 삽입
     var title = directChildren(root, ".section_title")[0];
-    var anchor = title || root.firstChild;
     if (title) {
       root.insertBefore(tabs, title.nextSibling);
     } else {
@@ -741,6 +741,19 @@
     return out;
   }
 
+  /* 동영상 ID → 편집칸에 표시할 YouTube 링크 주소(링크로 보고 수정할 수 있게) */
+  function shortsUrl(id) {
+    id = ytId(id || "");
+    return id ? "https://youtu.be/" + id : "";
+  }
+
+  function renumberShorts(box) {
+    qa(".lp-srow", box).forEach(function (row, i) {
+      var n = q(".lp-sn", row);
+      if (n) n.textContent = "#" + (i + 1);
+    });
+  }
+
   function buildShortsEditor() {
     var grid = q(SHORTS_GRID);
     if (!grid) return;
@@ -749,21 +762,48 @@
     var box = document.createElement("div");
     box.className = "lp-shorts-editor";
     box.setAttribute("data-lp-ec", "1");
-    cfg.forEach(function (it, i) { box.appendChild(shortsRow(it, i + 1)); });
+    cfg.forEach(function (it) { box.appendChild(shortsRow(it)); });
+
+    var add = document.createElement("button");
+    add.className = "lp-add lp-sadd"; add.type = "button";
+    add.textContent = "＋ YouTube 追加";
+    add.setAttribute("data-lp-ec", "1");
+    add.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation();
+      box.insertBefore(shortsRow({ id: "", ratio: "9x16" }), add);
+      renumberShorts(box);
+      var rows = qa(".lp-srow", box);
+      var last = rows[rows.length - 1];
+      var inp = last && q(".lp-sid", last);
+      if (inp) inp.focus();
+      toast("쇼츠를 추가했습니다");
+    });
+    box.appendChild(add);
+
     grid.innerHTML = "";
     grid.appendChild(box);
+    renumberShorts(box);
   }
 
-  function shortsRow(it, n) {
+  function shortsRow(it) {
     var row = document.createElement("div");
     row.className = "lp-srow"; row.setAttribute("data-lp-ec", "1");
     row.innerHTML =
-      "<span class='lp-sn'>#" + n + "</span>" +
-      "<input type='text' class='lp-sid' placeholder='YouTube 링크 또는 동영상 ID' value='" + (it.id || "") + "'>" +
+      "<span class='lp-sn'></span>" +
+      "<input type='text' class='lp-sid' placeholder='YouTube 링크 주소 (예: https://youtu.be/xxxxxxxxxxx)' value='" + shortsUrl(it.id) + "'>" +
       "<select class='lp-sratio'>" +
       "<option value='9x16'" + (it.ratio !== "16x9" ? " selected" : "") + ">세로 9:16</option>" +
       "<option value='16x9'" + (it.ratio === "16x9" ? " selected" : "") + ">가로 16:9</option>" +
-      "</select>";
+      "</select>" +
+      "<button type='button' class='lp-sdel' data-lp-ec='1' title='이 쇼츠 삭제'>×</button>";
+    var del = q(".lp-sdel", row);
+    if (del) del.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var box = row.parentElement;
+      row.remove();
+      if (box) renumberShorts(box);
+      toast("쇼츠를 삭제했습니다");
+    });
     return row;
   }
 
