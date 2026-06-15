@@ -160,6 +160,11 @@
       "html.lp-admin li.event_item.lp-item{padding-right:40px}" +
       /* 원장 경력 줄(.doctor_career li): ×버튼이 텍스트를 가리지 않게 우측 여백 확보 */
       "html.lp-admin .doctor_career li.lp-item{padding-right:34px}" +
+      /* 프로그램 단계(.pkg_steps li): ×버튼이 단계 텍스트를 가리지 않게 우측 여백 확보 */
+      "html.lp-admin .pkg_steps li.lp-item{padding-right:34px}" +
+      /* 패키지 블록(.prog_pkg): ×버튼이 패키지명을 가리지 않게 상단에 여백 확보 후 그 영역에 배치 */
+      "html.lp-admin .prog_pkg.lp-item{padding-top:38px}" +
+      "html.lp-admin .prog_pkg.lp-item > .lp-del{top:8px}" +
       ".lp-add{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 8px);margin:12px auto;padding:10px 16px;border:1.5px dashed #2f6df0;border-radius:10px;background:rgba(47,109,240,.08);color:#2f6df0;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;font-size:13px}" +
       "html.lp-admin #signature .sig_track .lp-add{width:180px;min-width:180px;margin:0 8px;align-self:center;flex:0 0 auto}" +
       "html.lp-admin .lp-img{position:relative;cursor:pointer}" +
@@ -216,7 +221,9 @@
     signature: [".sig_title", ".sig_desc", ".sig_tag", ".section_title"],
     event: [".event_name", ".event_now", ".event_origin", ".event_off", ".event_unit",
             ".event_note", ".event_badge", ".event_meta", ".event_price",
-            ".menu_cat_title", ".menu_sub", ".prog_title", ".proc-cat-title", ".proc-opt",
+            ".menu_cat_title", ".menu_sub", ".prog_title", ".prog_sub",
+            ".pkg_name", ".pkg_desc", ".pkg_steps li",
+            ".proc-cat-title", ".proc-opt",
             ".tab", ".subtab", ".plan-switch-btn", ".section_title"],
     doctors: [".doctor_role", ".doctor_name", ".doctor_career li", ".section_title"],
     info: [".info_label", ".info_text", ".info_hours dt", ".info_hours dd", ".section_title"],
@@ -225,6 +232,8 @@
   var ITEM_DEFS = [
     { wrap: "#signature .sig_track", item: ".sig_card" },
     { wrap: "#procedure_type", item: ".event_item" },
+    { wrap: "#procedure_type", item: ".pkg_steps li", addLabel: "＋ 단계 추가" },
+    { wrap: "#procedure_type", item: ".prog_pkg", addLabel: "＋ 패키지 추가" },
     { wrap: "#doctors .doctors_wrap", item: ".doctor_card" },
     { wrap: "#doctors", item: ".doctor_career li" },
     { wrap: "#BA .ba_grid", item: ".ba_card" }
@@ -324,7 +333,7 @@
         if (!items.length) return;
         var add = document.createElement("button");
         add.className = "lp-add"; add.type = "button";
-        add.textContent = "＋ 항목 추가";
+        add.textContent = def.addLabel || "＋ 항목 추가";
         add.setAttribute("data-lp-ec", "1");
         add.addEventListener("click", function (e) {
           e.preventDefault(); e.stopPropagation();
