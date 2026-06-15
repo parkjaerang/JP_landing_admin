@@ -1,1 +1,1 @@
-# JP_landing_admin
+# JP_landing
