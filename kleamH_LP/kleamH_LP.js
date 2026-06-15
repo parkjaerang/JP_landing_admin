@@ -177,6 +177,10 @@ document.querySelectorAll('.faq_item').forEach((item) => {
 });
 
 /* ===== 料金メニュー 아코디언 (제목 클릭 시 펼침/접힘) ===== */
+/* 관리자 편집 모드(html.lp-admin)에서는 아코디언을 만들지 않는다.
+   - 제목(.menu_cat_title)을 토글 버튼이 아닌 편집 가능한 텍스트로 그대로 두고
+   - 본문(가격 목록)도 펼쳐진 상태로 유지해 한 번에 편집할 수 있게 한다. */
+if (!document.documentElement.classList.contains('lp-admin')) {
 document.querySelectorAll('.menu_cat').forEach((cat) => {
     const title = cat.querySelector('.menu_cat_title');
     if (!title) return;
@@ -213,3 +217,4 @@ document.querySelectorAll('.menu_cat').forEach((cat) => {
         }
     });
 });
+}

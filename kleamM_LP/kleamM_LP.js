@@ -177,6 +177,10 @@ document.querySelectorAll('.faq_item').forEach((item) => {
 });
 
 /* ===== 료금표 카테고리 토글 ===== */
+/* 관리자 편집 모드(html.lp-admin)에서는 아코디언을 만들지 않는다.
+   - 제목(.prog_title)을 토글 버튼/화살표 아이콘 없이 편집 가능한 텍스트로 두고
+   - 본문(가격 목록)도 펼쳐진 상태로 유지해 한 번에 편집할 수 있게 한다. */
+if (!document.documentElement.classList.contains('lp-admin')) {
 document.querySelectorAll('.price_prog').forEach((prog) => {
     const title = prog.querySelector('.prog_title');
     if (!title) return;
@@ -216,3 +220,4 @@ document.querySelectorAll('.price_prog').forEach((prog) => {
         }
     });
 });
+}
