@@ -1,0 +1,335 @@
+/* 공통 스타일 (폰트/리셋/공통 컴포넌트) */
+@import url("../common.css");
+
+/* ===== 브랜드 테마 변수 ===== */
+:root {
+    --white: #f8f4ed;
+    --black: #1a1a1a;
+    --ink1: #b8a58b;
+    --font1: #3c3228;
+    --font2: #8f7a63;
+    --line: #2D7A4F;
+    --tint: #ece2d5;
+    --hover: #f4ede6;
+    --padding: 20px;
+}
+
+html {
+    background-color: #e0dcd3;
+}
+
+img{
+    width: 40%;
+    margin: 0 auto;
+}
+
+.element_wrap>h4{
+    font-size: 12px;
+}
+
+/* ===== HERO (오버레이 슬라이더형) ===== */
+#hero_intro{
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - 80px);
+    padding: var(--padding);
+    display: flex;
+    align-items: end;
+}
+
+#hero_intro .hero_bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#hero_intro .hero_bg.is-active{
+    opacity: 1;
+}
+
+#hero_intro::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+    z-index: 0;
+    pointer-events: none;
+}
+
+#hero_intro .element_wrap{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    color: var(--white);
+}
+
+/* ===== SIGNATURE 카드 ===== */
+.sig_card{
+    position: relative;
+    flex: 0 0 min(68vw, 325px);
+    max-width: 500px;
+    scroll-snap-align: center;
+    border-radius: 0;
+    overflow: visible;
+    background: none;
+    border: none;
+    box-shadow: none;
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+}
+
+.sig_thumb{
+    aspect-ratio: 3 / 4;
+    border-radius: 60px;
+    box-shadow: 0 16px 34px rgba(60, 50, 40, 0.16);
+}
+
+.sig_card:hover .sig_thumb img{
+    transform: scale(1.04);
+}
+
+/* 캡션: 카드 패널 없이 가운데 정렬 */
+.sig_overlay{
+    position: static;
+    width: 100%;
+    padding: 20px 14px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    text-align: center;
+    background: none;
+}
+
+.sig_title{
+    position: relative;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: .5px;
+    color: var(--font1);
+    text-shadow: none;
+}
+
+/* 타이틀 아래 가운데 작은 구분선 */
+.sig_title::after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 5px auto 11px;
+    background-color: var(--ink1);
+}
+
+.sig_desc{
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--font2);
+    text-shadow: none;
+}
+
+/* ===== PROCEDURE TYPE: キャンペーン案内 (lovae 고유) ===== */
+.campaign-info{
+    padding: 0 var(--padding);
+    margin-bottom: 22px;
+    text-align: start;
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+    color: var(--white);
+}
+
+.campaign-label{
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.campaign-period{
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    opacity: .95;
+}
+
+.campaign-period span{
+    margin: 0 4px;
+    opacity: .7;
+}
+
+.campaign-tax{
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 400;
+    opacity: .75;
+}
+
+/* ===== PROCEDURE TYPE: 2タブレイアウト (lovae 고유) ===== */
+.tabs-2{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.tabs-2 .tab{
+    padding: 11px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+/* ===== 施術カード: 予約ボタン (lovae 고유) ===== */
+.event_item .proc-book{
+    width: 100%;
+    margin-top: 2px;
+    padding: 10px 0;
+    border-radius: 9px;
+    font-size: 13px;
+    box-shadow: 0 2px 12px rgba(36, 97, 62, 0.25);
+}
+
+.event_item .proc-book:hover{
+    transform: translateY(-1px);
+}
+
+/* ===== REVIEW / 고객 후기 (lovae 고유) ===== */
+#review{
+    margin-top: 50px;
+    padding: 0 var(--padding);
+}
+
+.review_head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.review_title{
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--font2);
+}
+
+.review_nav{
+    display: flex;
+    gap: 10px;
+}
+
+.review_arrow{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--font2);
+    background-color: transparent;
+    color: var(--font2);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+.review_arrow:hover{
+    background-color: var(--font2);
+    color: var(--white);
+}
+
+.review_track{
+    display: flex;
+    gap: 16px;
+    padding: 4px 0 var(--padding);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+}
+
+.review_track::-webkit-scrollbar{
+    display: none;
+}
+
+.review_track.dragging{
+    cursor: grabbing;
+    scroll-behavior: auto;
+}
+
+.review_card{
+    flex: 0 0 min(80vw, 340px);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    background-color: var(--white);
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 26px 22px 20px;
+    box-shadow: 0 6px 22px rgba(94, 82, 74, 0.08);
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+}
+
+.review_text{
+    flex: 1;
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--font1);
+    white-space: pre-line;
+}
+
+.review_foot{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 22px;
+}
+
+.review_name{
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--font1);
+}
+
+.review_date{
+    font-size: 12px;
+    color: #b3a895;
+}
+
+/* ===== 브랜드 개별 오버라이드 ===== */
+
+.info_note{
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #888;
+}
+
+.footer_name{
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--hover);
+    margin-bottom: 12px;
+}
+
+.footer_line{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--hover);
+}
+
+.footer_sep{
+    margin: 0 8px;
+    color: var(--hover);
+}

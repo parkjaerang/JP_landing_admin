@@ -1,0 +1,952 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="ロバエクリニック, LOVAE CLINIC, 韓国美容クリニック, 韓国皮膚科, ソウル皮膚科, 弘大皮膚科, ホンデ皮膚科, 韓国美容医療, 韓国アンチエイジング, リフティング,たるみ改善,しわ改善,肌のハリ,肌質改善,ウルセラ,サーマクール,インモード,シュリンク,オリジオ,高周波リフト,HIFU,スキンブースター,水光注射,リジュラン,ジュベルック,ボトックス,ヒアルロン酸フィラー,フィラー,輪郭注射,毛穴改善,ニキビ治療,ニキビ跡治療,シミ治療,くすみ改善,赤ら顔改善,美白治療,肌再生,コラーゲン生成,小顔リフト,フェイスライン改善,韓国リフティング,韓国ボトックス,韓国フィラー,韓国スキンブースター,弘大美容クリニック,ホンデ美容クリニック">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./lovae_LP.css?v=3">
+    <link rel="icon" href="./lovae_LP_img/lovae_favicon.png" type="image/x-icon" sizes="48x48">
+    <script src="https://kit.fontawesome.com/2eb47fcd7e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="../admin-edit.js" defer></script>
+    <script src="./lovae_LP.js?v=3" defer></script>
+    <title>Lovae</title>
+</head>
+
+<body>
+    <header>
+        <div class="header_i">
+            <h1><span style="display: none;">lovae | 로바에의원</span><img src="./lovae_LP_img/lovae_logo.webp"
+                    alt="lovae_logo">
+            </h1>
+        </div>
+    </header>
+    <section id="hero_intro">
+        <div class="hero_bg is-active" style="background-image: url('./lovae_LP_img/hero3.png');"></div>
+        <div class="hero_bg" style="background-image: url('./lovae_LP_img/hero2.webp');"></div>
+        <div class="hero_bg" style="background-image: url('./lovae_LP_img/hero1.webp');"></div>
+        <div class="element_wrap">
+            <h2>本来の美しさが目覚める場所</h2>
+            <h3>
+                ロバエクリニックは、人工的な美しさではなく、<br>
+                あなた本来のバランスと調和を大切にしています。
+            </h3>
+            <h4>
+                過剰な施術に頼らず、お肌本来の美しさを引き出します。<br>
+                専門性に基づいたスキンケアソリューションをご提供いたします。
+            </h4>
+            <button class="line_btn" style="margin-bottom: 30px;"><a href="#"><i class="fa-brands fa-line"></i> LINE
+                    無料相談</a></button>
+        </div>
+    </section>
+    <section id="signature">
+        <h2 class="section_title">Ceramiqueの人気施術</h2>
+        <div class="sig_track">
+            <article class="sig_card">
+                <div class="sig_thumb"><img src="./lovae_LP_img/sig1.webp" alt="デザインフィラー"></div>
+                <div class="sig_overlay">
+                    <h3 class="sig_title">デザインフィラー</h3>
+                    <p class="sig_desc">顔全体の調和とバランスを整え、<br>自然な若々しさと美しい輪郭を実現します。</p>
+                </div>
+            </article>
+            <article class="sig_card">
+                <div class="sig_thumb"><img src="./lovae_LP_img/sig2.webp" alt="スキャンウルセラ"></div>
+                <div class="sig_overlay">
+                    <h3 class="sig_title">スキャンウルセラ</h3>
+                    <p class="sig_desc">超音波画像で肌の深層を確認し、<br>必要な層へ正確にエネルギーを届けます。</p>
+                </div>
+            </article>
+            <article class="sig_card">
+                <div class="sig_thumb"><img src="./lovae_LP_img/sig3.webp" alt="カスタムサーマジ"></div>
+                <div class="sig_overlay">
+                    <h3 class="sig_title">カスタムサーマジ</h3>
+                    <p class="sig_desc">コラーゲンの再構築を促し、<br>ハリのある引き締まった肌へ導きます。</p>
+                </div>
+            </article>
+            <article class="sig_card">
+                <div class="sig_thumb"><img src="./lovae_LP_img/sig4.webp" alt="コラーゲンブースター"></div>
+                <div class="sig_overlay">
+                    <h3 class="sig_title">コラーゲンブースター</h3>
+                    <p class="sig_desc">コラーゲンの生成を促進し、<br>ハリのあるなめらかな肌へ導きます。</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="procedure_type">
+        <h2 class="section_title">Lovae イベント料金</h2>
+
+        <div class="tabs tabs-2">
+            <button class="tab is-active" data-target="#panel-june">6月プロモーション</button>
+            <button class="tab" data-target="#panel-oneday">ワンデーキャンペーン</button>
+        </div>
+
+        <!-- ===== 6月プロモーション ===== -->
+        <div class="panel is-active" id="panel-june">
+            <div class="campaign-info">
+                <p class="campaign-label">今月のキャンペーン</p>
+                <p class="campaign-period">2026年06月01日 (00:00) <span>〜</span> 2026年06月30日 (19:00)</p>
+                <p class="campaign-tax">※消費税別</p>
+            </div>
+            <div class="subtabs">
+                <button class="subtab is-active" data-target="cat-petit">PETIT</button>
+                <button class="subtab" data-target="cat-skin">SKIN</button>
+                <button class="subtab" data-target="cat-lifting">LIFTING</button>
+                <button class="subtab" data-target="cat-body">BODY / HAIR REMOVAL</button>
+            </div>
+
+            <!-- PETIT -->
+            <div class="proc-cat is-active" id="cat-petit">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">[韓国製プレミアム] エラボトックス50ユニット＋シワボトックス 3部位</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">29万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">15万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">[ドイツ製] エラボトックス50ユニット＋シワボトックス 3部位</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">59万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">29.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">レディエッセ 1シリンジ</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">145万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">75万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">LOVAÉ Re-Born アイパッケージ 初回</div>
+                        <div class="event_note">目の下脂肪再配置施術</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">130万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">69万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">[韓国製プレミアム] "唇全体フィラー＋口角ボトックス "</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">46万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">24万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">[欧米製] "唇全体フィラー＋口角ボトックス "</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">85万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">44万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">[韓国製プレミアム] 額フィラー 3cc＋額/眉間ボトックス</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">120万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">62万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">[欧米製] 額フィラー 3cc＋額/眉間ボトックス</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">220万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">115万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SKIN -->
+            <div class="proc-cat" id="cat-skin">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">Re2O or CellREDM 1シリンジ</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">120万ウォン</span>
+                            <div class="event_price"><span class="event_off">43%</span><span
+                                    class="event_now">69万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">無結節 GOURI（ゴウリ）ブースター 6cc</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">120万ウォン</span>
+                            <div class="event_price"><span class="event_off">46%</span><span
+                                    class="event_now">65万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">純粋コラーゲンブースター：レティジェン6cc（目の下含む）</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">260万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">139万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">無痛Xインジェクター：グロウリジュラン4cc＋クライオ＋鎮静パック</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">75万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">39万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">無痛Xインジェクター：Re2O or CellREDM＋ポテンツァポンピングチップ＋ジュベルックスキン4cc＋クライオ＋鎮静パック</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">205万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">109万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ピコトーニング＋LDM 5回</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">89万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">45万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">アクアピール＋ポテンツァポンピングチップ＋ジュベルックスキン4cc＋クライオ＋鎮静パック</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">84万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">42.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ポテンツァポンピングチップ＋ジェネシストーニング＋エクソソームASCE 5cc＋クライオ＋鎮静パック</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">95万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">49.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">無痛Xインジェクター追加時 1回</div>
+                        <div class="event_note">(※すべてのスキンブースターに適用可能)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">15万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span class="event_now">8万ウォン</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIFTING -->
+            <div class="proc-cat" id="cat-lifting">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">ウルセラピープライム400ショット＋ONDA 8万J＋無痛LDM管理</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">400万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">205万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ウルセラピープライム500ショット＋オリジオ600ショット＋無痛LDM管理＋LED</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">500万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">259万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">マイセレクトONDA 18万ジュール</div>
+                        <div class="event_note">※分割使用可能</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">250万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">129万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">マイセレクトオリジオ1200ショット＋LDM管理2回</div>
+                        <div class="event_note">※分割使用可能</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">270万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">138万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BODY / HAIR REMOVAL -->
+            <div class="proc-cat" id="cat-body">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">女性脱毛)前腕/上腕(選択1)5回</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">25万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">12.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">女性脱毛)前腕＋ふくらはぎ(膝含む)5回</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">57万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">29万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">女性脱毛)脇＋人中脱毛5回</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">10.9万ウォン</span>
+                            <div class="event_price"><span class="event_off">50%</span><span
+                                    class="event_now">5.5万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">男性脱毛)脇5回</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">9.9万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span class="event_now">5万ウォン</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">男性脱毛）顔全体（額除く）5回</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">50万ウォン</span>
+                            <div class="event_price"><span class="event_off">42%</span><span
+                                    class="event_now">29万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ボディボトックス100ユニット＋ボディロフィット注射12cc</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">23万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">12万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ボディONDA 10万J＋ボディロフィット注射1部位</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">190万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">99万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ワンデーキャンペーン ===== -->
+        <div class="panel" id="panel-oneday">
+            <div class="campaign-info">
+                <p class="campaign-label">ワンデーキャンペーン</p>
+                <p class="campaign-period">常時開催中</p>
+                <p class="campaign-tax">※消費税別</p>
+            </div>
+            <div class="subtabs">
+                <button class="subtab is-active" data-target="day-skincare">1DAY スキンケア</button>
+                <button class="subtab" data-target="day-whitening">1DAY ホワイトニング</button>
+                <button class="subtab" data-target="day-acne">1DAY アクネ</button>
+                <button class="subtab" data-target="day-antiaging">1DAY アンチエイジング</button>
+                <button class="subtab" data-target="day-lifting">1DAY リフティング</button>
+                <button class="subtab" data-target="day-booster">1DAY スキンブースター</button>
+                <button class="subtab" data-target="day-body">1DAY ボディシェイピング</button>
+            </div>
+
+            <!-- 1DAY スキンケア -->
+            <div class="proc-cat is-active" id="day-skincare">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">クリーン毛穴 (アクアピール + LDM)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">18.9万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">9.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">光彩皮膚 (ララピール + LDM管理 + 再生レーザー)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">26万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">13.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ブライトニング (ピンクピール + 超音波管理)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">26万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">13.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">プレミアムニキビケア (ブラックピール + ニキビ圧출 + 炎症注射 + クライオ鎮静管理 + 鎮静パック)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">30万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">15.9万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1DAY ホワイトニング -->
+            <div class="proc-cat" id="day-whitening">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">色素パッケージ (ピコズームパス + ピコトーニング + ジェネシス + モデリングマスク)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">70万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">37万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">トーンアップパッケージ 1 (デュアルトーニング + リジュラントーンアップブースター + 超音波管理)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">37万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">19万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">トーンアップパッケージ 2 (ピコトーニング + NCTF135フィロルガ (3cc) + MTS + クライオ鎮静管理)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">46万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">24万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ホワイトニング・赤ら顔パッケージ (赤ら顔/血管レーザー + ジェネシス + LDM (12分, 赤ら顔モード) + モデリングマスク)
+                        </div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">48万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">24.9万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1DAY アクネ -->
+            <div class="proc-cat" id="day-acne">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">アクネベーシック (アクアピール + カプリレーザー + 圧出 + 炎症注射 + 鎮静パック)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">18.5万ウォン</span>
+                            <div class="event_price"><span class="event_off">9%</span><span
+                                    class="event_now">16.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">アクネプレミアム (ニキビ圧出 + エトソームPTT + ジェネシス + LED再生レーザー)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">39万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">19.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">アクネオールインワン (ポテンツァポンピングチップ + エクソソーム (5cc) + ジェネシス + 鎮静管理)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">82万ウォン</span>
+                            <div class="event_price"><span class="event_off">39%</span><span
+                                    class="event_now">49.9万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1DAY アンチエイジング -->
+            <div class="proc-cat" id="day-antiaging">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">首のしわ・弾力 (ダーマシュリンク (400ショット) + 首のしわスキンボトックス)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">68万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">35万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">首のしわベーシック (首しわフィラー 2CC＋首しわスキンボトックス)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">165万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">85万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">首しわ プレミアム (首シワフィラー2cc + ラディエス1バイアル + 首スキンボトックス)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">310万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">165万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ダークサークルベーシック</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">90万ウォン</span>
+                            <div class="event_price"><span class="event_off">46%</span><span
+                                    class="event_now">49万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ダークサークルプレミアム</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">130万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">69万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">フルフェイスコラーゲン (スカルプトラ 1vial + レディエッセ 1vial)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">320万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">165万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">こだわりフィラーパッケージ (こだわりフィラー 5cc -輸入)</div>
+                        <div class="event_note">*特殊部位を除く</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">330万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">170万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">こだわりフィラーパッケージ (フルフェイスフィラー 10cc -欧米製)</div>
+                        <div class="event_note">*特殊部位を除く</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">620万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">319万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1DAY リフティング -->
+            <div class="proc-cat" id="day-lifting">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">目元の弾力プレミアム (アイサーマクールFLX225ショット + アイリジュラン1cc+目元スキンボトックス)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">220万ウォン</span>
+                            <div class="event_price"><span class="event_off">46%</span><span
+                                    class="event_now">119万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">アイリフティング ベーシック (アイウルセラ 100ショット＋アイサーマクール225ショット＋アイリジュラン 1cc)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">300万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">159万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">アイリフティング プレミアム (アイウルセラ 200ショット＋アイサーマクール450ショット＋アイリジュラン 2cc＋目元ボトックス)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">560万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">289万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">シュリンクユニバース900ショット＋Oligio 600ショット</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">200万ウォン</span>
+                            <div class="event_price"><span class="event_off">45%</span><span
+                                    class="event_now">110万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ONDAリフティング 3万J+シュリンクユニバース600ショット</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">85万ウォン</span>
+                            <div class="event_price"><span class="event_off">42%</span><span
+                                    class="event_now">49万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ONDA リフティング 6万J+プライムレイズ45KJ</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">165万ウォン</span>
+                            <div class="event_price"><span class="event_off">46%</span><span
+                                    class="event_now">89万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ONDAリフティング 6万J+ウルセラピープライム300ショット</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">320万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">169万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ONDAリフティング 6万J+ウルセラピープライム600ショット</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">520万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">269万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ウルセラピープライム 300ショット＋サーマクール600ショット＋LDM ウォータードロップリフティング（12分）</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">600万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">315万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ウルセラピープライム 600ショット＋サーマクール900ショット＋フルフェイス スキンボトックス（ゼオミン）</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">710万ウォン</span>
+                            <div class="event_price"><span class="event_off">38%</span><span
+                                    class="event_now">440万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ウルセラピープライム 600ショット＋サーマクール900ショット＋フルフェイス スキンボトックス（ゼオミン）</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">980万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">510万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ウルセラフィ プライム400ショット + サーマクールFLX600ショット + リフティングボトックス(アラガン)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">710万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">369万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ウルセラピープライム 400ショット＋サーマクール 600ショット＋ONDAリフティング 6万J+鎮静管理</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">780万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">399万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">サーマクールFLX600ショット + アイサーマクールFLX225ショット + LDM ウォータードロップリフティング</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">600万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">309万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">サーマクールFLX600ショット + アイサーマクールFLX450ショット + ラディエス1バイアル</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">880万ウォン</span>
+                            <div class="event_price"><span class="event_off">49%</span><span
+                                    class="event_now">449万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1DAY スキンブースター -->
+            <div class="proc-cat" id="day-booster">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">フルフェイス リジュランブースター (リジュランヒーラー4cc+リジュラントーンアップブースター2cc + クライオ鎮静ケア+鎮静パック)
+                        </div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">105万ウォン</span>
+                            <div class="event_price"><span class="event_off">48%</span><span
+                                    class="event_now">55万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ラグジュアリー エクソブースター (ASCEエクソソーム+MTS+LDM+LED再生レーザー+鎮静パック)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">65万ウォン</span>
+                            <div class="event_price"><span class="event_off">46%</span><span
+                                    class="event_now">34.9万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">リジュベルク (リジュランヒーラー 4cc＋ジュベルクスキンブースター 2cc＋クライオ鎮静管理＋鎮静パック)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">105万ウォン</span>
+                            <div class="event_price"><span class="event_off">44%</span><span
+                                    class="event_now">59万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">無痛リジュラン オールインワン (全顔リジュランHB5cc+クライオ鎮静ケア+鎮静パック)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">160万ウォン</span>
+                            <div class="event_price"><span class="event_off">44%</span><span
+                                    class="event_now">89万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">毛穴リセット ブースター (アクアピール(1,2,3段階)+ポテンツァ(パンピングチップ) +
+                            リジュランヒーラー2cc+ジュベラックスキンブースター2cc + 毛穴ボトックス(国産)+鎮静パック)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">120万ウォン</span>
+                            <div class="event_price"><span class="event_off">46%</span><span
+                                    class="event_now">65万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ロングラスティング スキンブースター (スキンバイブ2cc+リジュランHB2cc+クライオ鎮静ケア+モデリングパック)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">180万ウォン</span>
+                            <div class="event_price"><span class="event_off">45%</span><span
+                                    class="event_now">99万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1DAY ボディシェイピング -->
+            <div class="proc-cat" id="day-body">
+                <div class="proc-cards">
+                    <div class="event_item">
+                        <div class="event_name">ヒップディップ パッケージ (スカルプトラ4本+ウルフィット1000ショット)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">750万ウォン</span>
+                            <div class="event_price"><span class="event_off">47%</span><span
+                                    class="event_now">399万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ボディONDAパッケージ 1 (ボディONDA 60KJ+ボディLowfit注射 24cc)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">140万ウォン</span>
+                            <div class="event_price"><span class="event_off">44%</span><span
+                                    class="event_now">79万ウォン</span></div>
+                        </div>
+                    </div>
+                    <div class="event_item">
+                        <div class="event_name">ボディONDAパッケージ2 (ボディONDA 100KJ++ボディLowfit注射 48cc)</div>
+                        <div class="proc-price-row">
+                            <span class="event_origin">240万ウォン</span>
+                            <div class="event_price"><span class="event_off">46%</span><span
+                                    class="event_now">129万ウォン</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="review">
+        <div class="review_head">
+            <h2 class="review_title">REVIEW</h2>
+            <div class="review_nav">
+                <button class="review_arrow review_prev" aria-label="前のレビュー">&#8249;</button>
+                <button class="review_arrow review_next" aria-label="次のレビュー">&#8250;</button>
+            </div>
+        </div>
+        <div class="review_track">
+            <article class="review_card">
+                <p class="review_text">
+                    まず、工場型の弘大の皮膚科とは違い、プレミアム感が感じられるところで、院長先生も施術の際に気になる点を丁寧に説明してくださり、スタッフの皆さんもとても親切です！最高です〜</p>
+                <div class="review_foot">
+                    <span class="review_name">나OOO시</span>
+                    <span class="review_date">25.10.16</span>
+                </div>
+            </article>
+            <article class="review_card">
+                <p class="review_text">子どもの頃から悩みだった額フィラーをロバエで受けました！
+                    費用面でも悩んでいたし、痛いという話も多かったので何年も先延ばしにしてきましたが、思い切って色々探した末にロバエで挑戦してみて、本当にもっと早くやれば良かったと後悔していますㅠㅠ
+                    少しの不快感を我慢して光を取り戻してください。 十数年間おろしていた前髪をようやくすっきり上げて歩けるようになりました。 ありがとうございます、院長先生 ♥</p>
+                <div class="review_foot">
+                    <span class="review_name">wld</span>
+                    <span class="review_date">25.09.06</span>
+                </div>
+            </article>
+            <article class="review_card">
+                <p class="review_text">クリニックのインテリアが清潔で良かったです ̆̈ カウンセリングも工場式ではなく、個々の顔に合わせて丁寧にしてくれます。
+                    過度な施術誘導もなく、必要だと思われる施術は軽くおすすめしてくれる程度で良かったです。 何より院長先生の美的センスが良く、自然な仕上がりにしてくださって満足です ̆̈</p>
+                <div class="review_foot">
+                    <span class="review_name">hms</span>
+                    <span class="review_date">25.10.25</span>
+                </div>
+            </article>
+            <article class="review_card">
+                <p class="review_text">エラボトックスのためにネイバーで調べて来たところですが、カウンセラーの方がエラボトックスだけでなく他の部位まで丁寧に相談に乗ってくださって良かったです！</p>
+                <div class="review_foot">
+                    <span class="review_name">CRU</span>
+                    <span class="review_date">25.10.29</span>
+                </div>
+            </article>
+            <article class="review_card">
+                <p class="review_text">友達と一緒に訪れましたが、店内がとても清潔で良かったです！ 工場式ではなく、丁寧にケアしてもらっている感じがしました。
+                    カウンセラーの方も過度な勧誘はなく、必要なものだけおすすめしてくださってとても良かったです。 インモードとシュリンクを受けましたが、すごく丁寧に施術してくれました。 再訪の意思あります！</p>
+                <div class="review_foot">
+                    <span class="review_name">민O다</span>
+                    <span class="review_date">25.11.01</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox_close" aria-label="閉じる">&times;</span>
+        <img class="lightbox_img" src="" alt="">
+    </div>
+    <!-- 
+    <section id="contents">
+        <h2 class="section_title">ClassOne Shorts</h2>
+        <div class="shorts_grid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/XiOWzs0vLW8?si=qWTfElb--wKFUO3Y"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cdFqNfFROtc?si=IZF3Hm9ZbbaHlG9x"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5QxyaHqZ7Tc?si=Rkpe5v3ZD4hogwzn"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cdFqNfFROtc?si=2T7f4xdhXXF3nlfe"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section> -->
+
+    <section id="faq">
+        <div class="faq_head">
+            <h2 class="section_title">よくある質問</h2>
+        </div>
+        <div class="faq_list">
+            <div class="faq_item">
+                <button class="faq_q" aria-expanded="false">
+                    <span class="faq_mark">Q</span>
+                    <span class="faq_qtext">日本語対応できますか？</span>
+                    <span class="faq_arrow" aria-hidden="true"></span>
+                </button>
+                <div class="faq_a">
+                    <p>専任の日本語対応スタッフが対応いたします。LINEでの事前相談も日本語で承ります。</p>
+                </div>
+            </div>
+            <div class="faq_item">
+                <button class="faq_q" aria-expanded="false">
+                    <span class="faq_mark">Q</span>
+                    <span class="faq_qtext">ダウンタイムはどのくらいですか？</span>
+                    <span class="faq_arrow" aria-hidden="true"></span>
+                </button>
+                <div class="faq_a">
+                    <p>施術内容によって異なります。糸リフトは数日〜1週間程度、二重整形は1〜2週間程度が目安です。詳細はカウンセリング時にご説明します。</p>
+                </div>
+            </div>
+            <div class="faq_item">
+                <button class="faq_q" aria-expanded="false">
+                    <span class="faq_mark">Q</span>
+                    <span class="faq_qtext">カード決済は可能ですか？</span>
+                    <span class="faq_arrow" aria-hidden="true"></span>
+                </button>
+                <div class="faq_a">
+                    <p>はい、クレジットカードでのお支払いが可能です。詳しくはお問い合わせください。</p>
+                </div>
+            </div>
+            <div class="faq_item">
+                <button class="faq_q" aria-expanded="false">
+                    <span class="faq_mark">Q</span>
+                    <span class="faq_qtext">通訳はいますか？</span>
+                    <span class="faq_arrow" aria-hidden="true"></span>
+                </button>
+                <div class="faq_a">
+                    <p>日本語サポートスタッフが在籍しております。安心してご来院ください。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="information">
+        <h2 class="section_title">病院の情報</h2>
+        <div class="info_wrap">
+            <div class="info_map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.9051942369088!2d126.9209631765618!3d37.557297372040935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c991fa245f903%3A0x8c189017a375e950!2z66Gc67CU7JeQ7J2Y7JuQIO2ZjeuMgA!5e0!3m2!1sko!2skr!4v1781242033376!5m2!1sko!2skr"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="info_detail">
+                <div class="info_block">
+                    <h3 class="info_label">病院住所</h3>
+                    <p class="info_text">ソウル特別市 麻浦区 楊花路165 サンジンビル 7階</p>
+                </div>
+                <div class="info_block">
+                    <h3 class="info_label">診療案内</h3>
+                    <dl class="info_hours">
+                        <div class="info_row">
+                            <dt>平日</dt>
+                            <dd>10:00 - 20:00</dd>
+                        </div>
+                        <div class="info_row">
+                            <dt>土</dt>
+                            <dd>10:00 - 16:30</dd>
+                        </div>
+                        <div class="info_row">
+                            <dt>日</dt>
+                            <dd>休業</dd>
+                        </div>
+                        <div class="info_row">
+                            <dt>昼休み</dt>
+                            <dd>-</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <div class="cta_i">
+            <p class="cta_lead">いつでもお気軽にご相談ください</p>
+            <p class="cta_sub">日本語対応スタッフが、お悩みに丁寧にお応えいたします。</p>
+            <button class="line_btn cta_btn"><a href="#"><i class="fa-brands fa-line"></i> LINE 無料相談</a></button>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer_i">
+            <p class="footer_name">商号 : ロバエ医院</p>
+            <p class="footer_line">ソウル特別市 麻浦区 楊花路165 サンジンビル 7階</p>
+            <p class="footer_line">事業者番号 : 873-28-01639 <span class="footer_sep">|</span> 代表者 : パク・ソヨン</p>
+            <p class="footer_line">© Copyright 2026 ロバエ医院. All Right Reserved</p>
+        </div>
+    </footer>
+</body>
+
+</html>

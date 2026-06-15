@@ -1,0 +1,348 @@
+/* 공통 스타일 (폰트/리셋/공통 컴포넌트) */
+@import url("../common.css");
+
+/* ===== 브랜드 테마 변수 ===== */
+:root {
+    --white: #fafafa;
+    --black : #1a1a1a;
+    --ink1: #333132;
+    --font1: #7D6053;
+    --font2: #A1CCC5;
+    --line :#2D7A4F;
+    --hover: #7A767A;
+    --padding: 20px
+}
+
+html {
+    background-color: #e0dcd3;
+}
+
+img{
+    width: 30%;
+    margin: 0 auto;
+}
+
+/* ===== HERO (영상형) ===== */
+#hero_intro{
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - 80px);
+    padding: var(--padding);
+    display: flex;
+    align-items: end;
+}
+
+#hero_intro .hero_video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+#hero_intro .element_wrap{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    color: var(--white);
+}
+
+/* ===== SIGNATURE 카드 (오버레이형) ===== */
+.sig_card{
+    position: relative;
+    flex: 0 0 min(68vw, 325px);
+    max-width: 500px;
+    scroll-snap-align: center;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 22px rgba(94, 82, 74, 0.10);
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+}
+
+.sig_overlay{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 60px var(--padding) 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0) 100%);
+}
+
+.sig_badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--font2);
+}
+
+.sig_badge::before{
+    content: "";
+    width: 22px;
+    height: 1px;
+    background-color: var(--font2);
+}
+
+.sig_title{
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--white);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* ===== PRICE LIST / 이벤트 가격표 (kleamM 고유) ===== */
+.price_period{
+    padding: 0 var(--padding);
+    margin-bottom: 16px;
+    color: var(--hover);
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .5px;
+}
+
+.price_hint{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 var(--padding);
+    margin-bottom: 16px;
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--font2);
+}
+
+.price_hint_badge{
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--white);
+    color: var(--ink1);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: 4px 11px;
+    border-radius: 999px;
+}
+
+.price_list{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 0 var(--padding);
+}
+
+.price_prog{
+    background-color: var(--white);
+    border: 1px solid #eee;
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+    color: var(--font1);
+}
+
+.prog_title{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px var(--padding);
+    background-color: var(--white);
+    color: var(--ink1);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .15s ease;
+}
+
+.prog_title:hover{
+    background-color: #c2d6d3;
+}
+
+.prog_ttext{
+    flex: 1;
+    min-width: 0;
+}
+
+.prog_chevron{
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--font2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s ease;
+}
+
+.prog_chevron::before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin-top: -3px;
+    border-right: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
+    transform: rotate(45deg);
+}
+
+.price_prog.open .prog_chevron{
+    transform: rotate(180deg);
+}
+
+.prog_body{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+}
+
+.prog_sub{
+    padding: 14px var(--padding) 6px;
+    color: var(--font1);
+    opacity: .65;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+.prog_items{
+    padding: 4px var(--padding) 10px;
+}
+
+.event_item{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 11px 0;
+    border-bottom: 1px solid #f0eeea;
+}
+
+.prog_items .event_item:last-child{
+    border-bottom: none;
+}
+
+.event_name{
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--ink1);
+}
+
+.event_price{
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 19px;
+    font-weight: 900;
+    color: var(--line);
+}
+
+.event_price small{
+    margin-left: 3px;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--hover);
+}
+
+/* 줄기세포 등 패키지형 프로그램 */
+.prog_pkg{
+    padding: 16px var(--padding);
+    border-top: 1px solid #f0eeea;
+}
+
+.prog_body > .prog_pkg:first-child{
+    border-top: none;
+}
+
+.pkg_name{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--font1);
+}
+
+.pkg_desc{
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--hover);
+}
+
+.pkg_steps{
+    list-style: none;
+    counter-reset: step;
+    margin: 12px 0 4px;
+}
+
+.pkg_steps li{
+    counter-increment: step;
+    position: relative;
+    padding: 4px 0 4px 26px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--font1);
+}
+
+.pkg_steps li::before{
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--font2);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prog_pkg .prog_items{
+    padding: 8px 0 0;
+}
+
+/* ===== 브랜드 개별 오버라이드 ===== */
+/* shorts: 세로형(9/16) 2열 */
+.shorts_grid{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.shorts_grid iframe{
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+}
+
+.info_note{
+    color: var(--hover);
+}
+
+.footer_name{
+    color: var(--font2);
+}
+
+.footer_line{
+    color: var(--hover);
+}
+
+.footer_sep{
+    color: var(--font2);
+}

@@ -1,0 +1,195 @@
+/* 공통 스타일 (폰트/리셋/공통 컴포넌트) */
+@import url("../common.css");
+
+/* ===== 브랜드 테마 변수 ===== */
+:root {
+    --white: #fafafa;
+    --black : #1a1a1a;
+    --ink1: #F1EEE9;
+    --font1: #5E524A;
+    --font2: #CEA978;
+    --line :#2D7A4F;
+    --hover: #B0A9A4;
+    --padding: 20px
+}
+
+html {
+    background-color: #d9d4cd;
+}
+
+img{
+    width: 30%;
+    margin: 0 auto;
+}
+
+/* ===== HERO (배경 이미지형) ===== */
+#hero_intro{
+    background-image: url(./wooa_LP_img/hero_img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+    padding: var(--padding);
+    display: flex;
+    align-items: end;
+}
+
+#hero_intro .element_wrap{
+    width: 100%;
+    color: var(--font1);
+}
+
+/* ===== SIGNATURE 카드 (본문 + 태그형) ===== */
+.sig_card{
+    flex: 0 0 min(68vw, 325px);
+    max-width: 500px;
+    scroll-snap-align: center;
+    background-color: var(--white);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 22px rgba(94, 82, 74, 0.10);
+    font-family: 'SST', 'Noto Sans JP', sans-serif;
+    color: var(--font1);
+}
+
+.sig_body{
+    position: relative;
+    padding: 20px var(--padding) 22px;
+}
+
+.sig_title{
+    font-size: 19px;
+    font-weight: 900;
+    color: var(--font2);
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.sig_desc{
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--font1);
+    margin-bottom: 16px;
+}
+
+.sig_tags{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sig_tag{
+    display: block;
+    text-align: center;
+    padding: 8px 12px;
+    border: 1px solid var(--font2);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--font1);
+    transition: background-color .15s ease, color .15s ease;
+}
+
+/* ===== 브랜드 개별 오버라이드 ===== */
+#BA{
+    margin-bottom: 50px;
+}
+
+.event_more{
+    color: var(--font1);
+}
+
+.event_more:hover{
+    background-color: var(--ink1);
+}
+
+.event_meta{
+    color: var(--hover);
+}
+
+.event_note{
+    color: var(--hover);
+}
+
+/* shorts: 세로형(9/16) 2열 */
+.shorts_grid{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.shorts_grid iframe{
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+}
+
+/* shorts facade: 썸네일만 먼저 표시, 탭하면 iframe 로드 */
+.short_item{
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+}
+
+.short_thumb{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.short_play{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    transition: background 0.2s ease;
+    pointer-events: none;
+}
+
+.short_play::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 11px 0 11px 19px;
+    border-color: transparent transparent transparent #fff;
+}
+
+.short_item:hover .short_play{
+    background: rgba(220, 20, 60, 0.85);
+}
+
+.short_item iframe{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#footer{
+    margin-top: 0;
+}
+
+.footer_name{
+    color: var(--font2);
+}
+
+.footer_sep{
+    color: var(--font2);
+}
