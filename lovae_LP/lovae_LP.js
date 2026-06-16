@@ -296,3 +296,86 @@ if (window.Swiper) {
         slides[i].classList.add('is-active');
     }, 4000);
 })();
+
+/* ===== DOCTORS 가로 슬라이더 (kleamH와 동일) ===== */
+function initCardSlider(track, cardSelector, { interval = 2500, gap = 16 } = {}) {
+    if (!track) return;
+
+    let timer = null;
+    let paused = false;
+    let isDragging = false;
+    let index = 0; // 현재 카드 인덱스
+
+    function nextSlide() {
+        const cards = track.querySelectorAll(cardSelector);
+        if (!cards.length) return;
+        const step = cards[0].offsetWidth + gap; // 카드 폭 + gap
+        // 마지막 카드 다음에는 처음으로 되돌아간다
+        index = index >= cards.length - 1 ? 0 : index + 1;
+        track.scrollTo({ left: step * index, behavior: 'smooth' });
+    }
+
+    function start() {
+        if (timer) return;
+        timer = setInterval(() => {
+            if (!paused && !isDragging) nextSlide();
+        }, interval);
+    }
+
+    // 호버 / 터치 시 일시정지
+    track.addEventListener('mouseenter', () => { paused = true; });
+    track.addEventListener('mouseleave', () => { paused = false; });
+    track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    track.addEventListener('touchend', () => { paused = false; });
+
+    // 드래그로 좌우 스크롤
+    let startX = 0;
+    let startScroll = 0;
+    let moved = false;
+
+    track.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        moved = false;
+        startX = e.clientX;
+        startScroll = track.scrollLeft;
+        track.style.scrollSnapType = 'none';
+        track.classList.add('dragging');
+        track.setPointerCapture(e.pointerId);
+    });
+
+    track.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 4) moved = true;
+        track.scrollLeft = startScroll - dx;
+    });
+
+    function endDrag(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        track.classList.remove('dragging');
+        track.style.scrollSnapType = '';
+        try { track.releasePointerCapture(e.pointerId); } catch (_) {}
+        // 드래그로 옮긴 위치에 맞춰 인덱스 동기화
+        const card = track.querySelector(cardSelector);
+        if (card) {
+            const step = card.offsetWidth + gap;
+            index = Math.round(track.scrollLeft / step);
+        }
+    }
+
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    // 드래그 후 클릭 오작동 방지
+    track.addEventListener('click', (e) => {
+        if (moved) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }, true);
+
+    start();
+}
+
+initCardSlider(document.querySelector('.doctors_wrap'), '.doctor_card', { interval: 3000 });

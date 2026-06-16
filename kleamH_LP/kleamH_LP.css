@@ -274,6 +274,71 @@ img{
     margin-left: 2px;
 }
 
+/* ===== 패키지형 프로그램(줄기세포 등｜명동점과 동일 구조) ===== */
+.prog_pkg{
+    padding: 16px;
+}
+
+.prog_pkg + .prog_pkg{
+    border-top: 1px solid #f0ebe3;
+}
+
+.pkg_name{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--font1);
+}
+
+.pkg_desc{
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--font2);
+}
+
+.pkg_steps{
+    list-style: none;
+    counter-reset: step;
+    margin: 12px 0 4px;
+    padding: 0;
+}
+
+.pkg_steps li{
+    counter-increment: step;
+    position: relative;
+    padding: 4px 0 4px 26px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--font1);
+}
+
+.pkg_steps li::before{
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--font2);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prog_items{
+    padding: 6px 16px 4px;
+}
+
+.prog_pkg .prog_items{
+    padding: 8px 0 0;
+}
+
 .menu_note{
     text-align: center;
     margin-top: 22px;
